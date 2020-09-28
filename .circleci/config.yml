@@ -30,7 +30,7 @@ jobs:
 
       - run:
           name: Run Unit Test
-          command:  yarn test
+          command: yarn test
 
       - run:
           name: Login into Expo
@@ -52,10 +52,10 @@ jobs:
               echo "App upload failed, reason : ",$UPLOAD_ERROR_MESSAGE
               exit 1;
             fi
-        
-        - run:
-            name: Run e2e Test
-            command: cd test && node singletest.js
+
+      - run:
+          name: Run e2e Test
+          command: cd test && node singletest.js
 
 
 workflows:
