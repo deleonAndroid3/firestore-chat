@@ -29,10 +29,6 @@ jobs:
           key: v1-cache-dependencies-{{ checksum "yarn.lock" }}-{{ checksum "package.json" }}-{{ arch }}
 
       - run:
-          name: Run Unit Test
-          command: yarn test
-
-      - run:
           name: Login into Expo
           command: npx expo login -u $EXPO_USERNAME -p $EXPO_PASSWORD
 
