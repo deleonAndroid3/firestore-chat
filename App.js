@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler'
 import React, { useEffect, useState } from 'react'
-import { YellowBox } from 'react-native'
+import { CameraRoll, LogBox } from 'react-native'
 import { firebase, firestore } from './src/firebase/firebase.app'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
@@ -14,15 +14,19 @@ if (!global.atob) {
   global.atob = decode
 }
 
-YellowBox.ignoreWarnings([
+LogBox.ignoreLogs([
   new RegExp('Setting a timer for a long period of time'),
   new RegExp('Remote debugger'),
 ])
 
 const Stack = createStackNavigator()
 
+export function test(x,y) {
+  return x + y
+}
+
 export default function App() {
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
   const [user, setUser] = useState(null)
 
   useEffect(() => {
