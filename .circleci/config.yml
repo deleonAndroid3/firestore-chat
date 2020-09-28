@@ -28,7 +28,9 @@ jobs:
             - ~/.cache/yarn
           key: v1-cache-dependencies-{{ checksum "yarn.lock" }}-{{ checksum "package.json" }}-{{ arch }}
 
-      - run: yarn test
+      - run:
+          name: Run Unit Test
+          command:  yarn test
 
       - run:
           name: Login into Expo
@@ -50,6 +52,10 @@ jobs:
               echo "App upload failed, reason : ",$UPLOAD_ERROR_MESSAGE
               exit 1;
             fi
+        
+        - run:
+            name: Run e2e Test
+            command: cd test && node singletest.js
 
 
 workflows:
