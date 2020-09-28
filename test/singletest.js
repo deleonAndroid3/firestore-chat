@@ -19,6 +19,16 @@ var driver = wd.promiseRemote('http://hub-cloud.browserstack.com/wd/hub')
 
 driver
   .init(desiredCaps)
+  .then(function () {
+    return driver.waitForElementByAccessibilityId(
+      'Type a message...',
+      asserters.isDisplayed && asserters.isEnabled,
+      30000,
+    )
+  })
+  .then(function (Input) {
+    return Input.sendKeys('BrowserStack')
+  })
   .fin(function () {
     return driver.quit()
   })

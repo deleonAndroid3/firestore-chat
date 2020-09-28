@@ -21,10 +21,6 @@ LogBox.ignoreLogs([
 
 const Stack = createStackNavigator()
 
-export function test(x,y) {
-  return x + y
-}
-
 export default function App() {
   const [loading, setLoading] = useState(false)
   const [user, setUser] = useState(null)
