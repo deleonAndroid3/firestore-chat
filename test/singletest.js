@@ -13,7 +13,6 @@ var desiredCaps = {
   device: 'Google Pixel 3',
   app: app,
   'browserstack.debug': true,
-  'browserstack.local': true,
 }
 var driver = wd.promiseRemote('http://hub-cloud.browserstack.com/wd/hub')
 
