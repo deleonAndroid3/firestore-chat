@@ -1,9 +1,14 @@
 import React, { useState } from 'react'
-import { CheckBox, Image, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { Image, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import styles from './styles'
 import { firebase } from '../../firebase/firebase.app'
-import { TransitionPresets } from '@react-navigation/stack'
+
+export function signin(email, password) {
+  return firebase
+    .auth()
+    .signInWithEmailAndPassword(email, password)
+}
 
 export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState('')
@@ -12,7 +17,7 @@ export default function LoginScreen({ navigation }) {
   const onFooterLinkPress = () => {
     navigation.navigate('Registration')
   }
-
+  
   const onLoginPress = () => {
     firebase
       .auth()

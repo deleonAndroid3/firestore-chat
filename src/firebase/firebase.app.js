@@ -1,4 +1,5 @@
-import * as firebase from 'firebase'
+/* eslint-disable no-undef */
+import firebase from 'firebase'
 import '@firebase/auth'
 import '@firebase/firestore'
 

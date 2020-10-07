@@ -7,7 +7,8 @@
     "web": "expo start --web",
     "eject": "expo eject",
     "lint": "eslint src/**/*.js App.js",
-    "test": "jest --detectOpenHandles --forceExit",
+    "tests": "jest --detectOpenHandles --forceExit --verbose --silent",
+    "test": "jest",
     "test:update-snapshot": "jest -u",
     "test:dev": "jest --watch --coverage=false --changedSince=origin/master",
     "test:coverage": "jest --verbose --updateSnapshot --watch --coverage && open ./coverage/lcov-report/index.html"
@@ -36,6 +37,9 @@
   "devDependencies": {
     "@babel/core": "^7.8.6",
     "babel-preset-expo": "^8.3.0",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.5",
+    "enzyme-to-json": "^3.6.1",
     "eslint": "^7.9.0",
     "eslint-plugin-react": "^7.20.6",
     "jest-expo": "^39.0.0",
@@ -44,11 +48,14 @@
   "private": true,
   "jest": {
     "preset": "jest-expo",
+    "testEnvironment": "jsdom",
     "setupFiles": [
       "./jest.setup.js"
     ],
     "transformIgnorePatterns": [
       "node_modules/(?!(jest-)?react-native|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|@sentry/.*)"
-    ]
+    ],
+    "snapshotSerializers": ["enzyme-to-json/serializer"],
+    "coverageReporters": ["text"]
   }
 }

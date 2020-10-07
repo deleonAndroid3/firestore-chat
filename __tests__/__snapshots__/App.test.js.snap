@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`App test against snapshot 1`] = `
+exports[`<App /> App test against snapshot 1`] = `
 <View
   style={
     Object {
@@ -8,12 +8,15 @@ exports[`App test against snapshot 1`] = `
     }
   }
 >
-  <RNCSafeAreaView
+  <RNCSafeAreaProvider
     onInsetsChange={[Function]}
     style={
-      Object {
-        "flex": 1,
-      }
+      Array [
+        Object {
+          "flex": 1,
+        },
+        undefined,
+      ]
     }
   >
     <View
@@ -107,6 +110,7 @@ exports[`App test against snapshot 1`] = `
             >
               <Text
                 accessibilityRole="header"
+                aria-level="1"
                 numberOfLines={1}
                 onLayout={[Function]}
                 style={
@@ -302,6 +306,6 @@ exports[`App test against snapshot 1`] = `
         </View>
       </View>
     </View>
-  </RNCSafeAreaView>
+  </RNCSafeAreaProvider>
 </View>
 `;
