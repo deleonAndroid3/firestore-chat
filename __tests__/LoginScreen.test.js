@@ -2,7 +2,7 @@
 import { shallow } from 'enzyme'
 import React from 'react'
 import { act } from 'react-test-renderer'
-import LoginScreen, { signin } from '../src/screens/LoginScreen/LoginScreen'
+import LoginScreen, { handleSignIn, handleSignOut } from '../src/screens/LoginScreen/LoginScreen'
 import { firebase } from '../src/firebase/firebase.app'
 
 
@@ -16,8 +16,8 @@ describe('< LoginScreen />', () => {
 
   firebase.auth = jest.fn().mockReturnValue({
     currentUser: {
-      displayName: 'testDisplayName',
-      email: 'test@test.com',
+      displayName: 'Ts Xs',
+      email: 'apappas1129@gmail.com',
       emailVerified: true
     },
     signOut: function() { return true },
@@ -50,13 +50,18 @@ describe('< LoginScreen />', () => {
     expect(login.find('ForwardRef').exists()).toBe(true)
   })
 
-  it('should return user', () => {
-    let result = signin('apappas1129@gmail.com', 'password')
+  it('signin should return user', () => {
+    let result = handleSignIn('apappas1129@gmail.com', 'password')
     expect(result).toEqual(user)
   })
 
-  it('should return error', () => {
-    let result = signin('apappas1129@gmail.com', 'notapassword')
+  it('signin should return error', () => {
+    let result = handleSignIn('apappas1129@gmail.com', 'notapassword')
     expect(result).toEqual('user not found')
+  })
+
+  it('signout should return true', () => {
+    let result = handleSignOut()
+    expect(result).toBe(true)
   })
 })

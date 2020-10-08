@@ -1,6 +1,7 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 
-import React, { useState } from 'react'
+import React from 'react'
 import { shallow } from 'enzyme'
 import { act } from 'react-test-renderer'
 import { firebase } from '../src/firebase/firebase.app'
