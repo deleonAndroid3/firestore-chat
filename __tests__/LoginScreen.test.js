@@ -2,7 +2,7 @@
 import { shallow } from 'enzyme'
 import React from 'react'
 import { act } from 'react-test-renderer'
-import LoginScreen, { handleSignIn, handleSignOut } from '../src/screens/LoginScreen/LoginScreen'
+import LoginScreen, { handleSignIn, handleSignInWithCred, handleSignOut } from '../src/screens/LoginScreen/LoginScreen'
 import { firebase } from '../src/firebase/firebase.app'
 
 
@@ -28,6 +28,13 @@ describe('< LoginScreen />', () => {
         return 'user not found'
       }
     },
+    signInWithCredential: function (credential){
+      if (credential === 'token') {
+        return true
+      } else {
+        return 'wrong token'
+      }
+    }
   })
 
   let login =  shallow(<LoginScreen />)
@@ -63,5 +70,20 @@ describe('< LoginScreen />', () => {
   it('signout should return true', () => {
     let result = handleSignOut()
     expect(result).toBe(true)
+  })
+
+  it('signin with cred should return true', async () => {
+    let result = await handleSignInWithCred('success', 'token')
+    expect(result).toBe(true)
+  })
+
+  it('signin with cred should return false by cancelling', async () => {
+    let result = await handleSignInWithCred('cancel','token')
+    expect(result).toBe(false)
+  })
+
+  it('signin with cred should return false by error', async () => {
+    let result = await handleSignInWithCred('success', 'nottoken')
+    expect(result).toBe('wrong token')
   })
 })

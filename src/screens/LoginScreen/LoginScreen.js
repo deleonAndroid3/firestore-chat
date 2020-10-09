@@ -3,6 +3,7 @@ import { Image, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import styles from './styles'
 import { firebase } from '../../firebase/firebase.app'
+import * as Facebook from 'expo-facebook'
 
 export function handleSignIn(email, password) {
   return firebase
@@ -13,6 +14,35 @@ export function handleSignIn(email, password) {
 export function handleSignOut() {
   if (firebase.auth().currentUser) {
     return firebase.auth().signOut()
+  }
+}
+
+export async function handleSignInWithCred(_type, _credential){
+  
+  try {
+    /**
+     * If the user or Facebook cancelled the login, returns { type: 'cancel' }.
+     * Otherwise, returns { type: 'success' } & [FacebookAuthenticationCredential]
+     * 
+     * let us assume what the user does using the _type parameter  
+     */
+    // await Facebook.initializeAsync({
+    //   appId: '821584115048039',
+    // })
+    // const { type, token } = await Facebook.logInWithReadPermissionsAsync({
+    //   permissions: ['public_profile', 'email'],
+    // })
+    if (_type === 'success') {
+      // const credential = firebase.auth.FacebookAuthProvider.credential(token)
+      return firebase
+        .auth()
+        .signInWithCredential(_credential)
+    }else{
+      return false
+    }
+
+  }catch (error){
+    return error
   }
 }
 
