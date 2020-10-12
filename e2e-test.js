@@ -73,7 +73,7 @@ driver
   .then(function () {
     // let contexts = driver.contexts()
     // driver.context(contexts[1])
-    return driver.waitForElementByXPath('//android.widget.EditText[@content-desc="Username"]',asserters.isDisplayed && asserters.isEnabled,30000)
+    return driver.waitForElementByXPath('Username',asserters.isDisplayed && asserters.isEnabled,30000)
   })
   .then(function (Email) {
     return Email.sendKeys('carlzz74@yahoo.com')
@@ -81,13 +81,13 @@ driver
   .then(function () {
     // let contexts = driver.contexts()
     // driver.context(contexts[1])
-    return driver.waitForElementByXPath('//android.widget.EditText[@content-desc="Password"]',asserters.isDisplayed && asserters.isEnabled,30000)
+    return driver.waitForElementByAccessibilityId('Password',asserters.isDisplayed && asserters.isEnabled,30000)
   })
   .then(function (Password) {
     return Password.sendKeys('Carlosniper123')
   })
   .then(function () {
-    return driver.waitForElementByXPath('//android.view.ViewGroup[@content-desc="Log In"]',asserters.isDisplayed && asserters.isEnabled,30000)
+    return driver.waitForElementByAccessibilityId('Log In',asserters.isDisplayed && asserters.isEnabled,30000)
   })
   .then(function (Login) {
     return Login.click()
