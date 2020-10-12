@@ -25,6 +25,9 @@
       "supportsTablet": true
     },
     "description": "POC for Firestore and React Native",
-    "githubUrl": "https://github.com/apappas1129/firestore-chat"
+    "githubUrl": "https://github.com/apappas1129/firestore-chat",
+    "android": {
+      "package": "com.deleonandroid3.firestorechat"
+    }
   }
 }

@@ -4,6 +4,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import styles from './styles'
 import { firebase } from '../../firebase/firebase.app'
 import * as Facebook from 'expo-facebook'
+import env from '../../../environment'
 
 export function handleSignIn(email, password) {
   return firebase
@@ -81,6 +82,54 @@ export default function LoginScreen({ navigation }) {
       })
   }
 
+  async function loginWithFacebook() {
+    try {
+      await Facebook.initializeAsync({
+        appId: env.facebookAppID,
+      })
+      const { type, token } = await Facebook.logInWithReadPermissionsAsync({
+        permissions: ['public_profile', 'email'],
+      })
+      if (type === 'success') {
+        const credential = firebase.auth.FacebookAuthProvider.credential(token)
+
+        firebase
+          .auth()
+          .signInWithCredential(credential)
+          .then(({ additionalUserInfo, user }) => {
+            const { profile, providerId } = additionalUserInfo
+            const data = {
+              _id: user.uid,
+              email: profile.email || user.email || user.providerData[0].email,
+              name: profile.name || user.displayName,
+              avatar:
+                profile.picture?.data?.url ||
+                user.photoURL ||
+                user.providerData[0].photoURL,
+              providerId,
+              photo: `https://graph.facebook.com/${profile.id}/picture?height=500`,
+            }
+            const usersRef = firebase.firestore().collection('users')
+            usersRef
+              .doc(user.uid)
+              .set(data)
+              .then(() => {
+                navigation.navigate('Home', { user: data })
+              })
+              .catch((error) => {
+                alert(error)
+              })
+          })
+          .catch((error) => {
+            alert(error)
+          })
+      }
+    } catch (error) {
+      console.warn('FB_LOGIN_FAILED', JSON.stringify(error))
+      alert(`Facebook Login Error: ${error.message}`)
+    }
+  }
+
   return (
     <View style={styles.container}>
       <KeyboardAwareScrollView
@@ -99,6 +148,8 @@ export default function LoginScreen({ navigation }) {
           value={email}
           underlineColorAndroid='transparent'
           autoCapitalize='none'
+          testID='Email'
+          accessibilityLabel='Email'
         />
         <TextInput
           style={styles.input}
@@ -109,10 +160,16 @@ export default function LoginScreen({ navigation }) {
           value={password}
           underlineColorAndroid='transparent'
           autoCapitalize='none'
+          testID='Password'
+          accessibilityLabel='Password'
         />
-        <TouchableOpacity style={styles.button} onPress={() => onLoginPress()}>
+        <TouchableOpacity style={styles.button} onPress={() => onLoginPress()} testID='Login' accessibilityLabel='Login'>
           <Text style={styles.buttonTitle}>Log in</Text>
         </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={() => loginWithFacebook()}testID='LoginFB' accessibilityLabel='LoginFB'>
+          <Text style={styles.buttonTitle}>Log in With Facebook</Text>
+        </TouchableOpacity>
+
         <View style={styles.footerView}>
           <Text style={styles.footerText}>
             Don&apos;t have an account?{' '}
