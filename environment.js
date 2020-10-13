@@ -10,5 +10,5 @@ const environment = {
   },
   facebookAppID: '821584115048039',
 }
-  
+
 export default environment
