@@ -13,16 +13,6 @@ import PropTypes from 'prop-types'
 const chatsRef = firestore.collection('chats')
 const expoPushTokensRef = firestore.collection('expoPushTokens')
 
-export function maybeGetEventsByState(state) {  
-  let query = firestore.collection('events')
-  
-  if (state) {
-    query = query.where('state', '==', state)
-  }
-  
-  return query.get()
-}
-
 const ChatScreen = (props) => {
   const [messages, setMessages] = useState([])
   const [expoPushToken, setExpoPushToken] = useState()

@@ -38,6 +38,7 @@ exports[`< LoginScreen /> App test against snapshot 1`] = `
       }
     />
     <Component
+      accessibilityLabel="Email"
       allowFontScaling={true}
       autoCapitalize="none"
       onChangeText={[Function]}
@@ -57,10 +58,12 @@ exports[`< LoginScreen /> App test against snapshot 1`] = `
           "paddingLeft": 16,
         }
       }
+      testID="Email"
       underlineColorAndroid="transparent"
       value=""
     />
     <Component
+      accessibilityLabel="Password"
       allowFontScaling={true}
       autoCapitalize="none"
       onChangeText={[Function]}
@@ -81,10 +84,12 @@ exports[`< LoginScreen /> App test against snapshot 1`] = `
           "paddingLeft": 16,
         }
       }
+      testID="Password"
       underlineColorAndroid="transparent"
       value=""
     />
     <ForwardRef
+      accessibilityLabel="Login"
       onPress={[Function]}
       style={
         Object {
@@ -98,6 +103,7 @@ exports[`< LoginScreen /> App test against snapshot 1`] = `
           "marginTop": 20,
         }
       }
+      testID="Login"
     >
       <Text
         style={
@@ -109,6 +115,35 @@ exports[`< LoginScreen /> App test against snapshot 1`] = `
         }
       >
         Log in
+      </Text>
+    </ForwardRef>
+    <ForwardRef
+      accessibilityLabel="LoginFB"
+      onPress={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#788eec",
+          "borderRadius": 5,
+          "height": 48,
+          "justifyContent": "center",
+          "marginLeft": 30,
+          "marginRight": 30,
+          "marginTop": 20,
+        }
+      }
+      testID="LoginFB"
+    >
+      <Text
+        style={
+          Object {
+            "color": "white",
+            "fontSize": 16,
+            "fontWeight": "bold",
+          }
+        }
+      >
+        Log in With Facebook
       </Text>
     </ForwardRef>
     <View

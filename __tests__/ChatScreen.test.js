@@ -5,7 +5,7 @@ import { act } from 'react-test-renderer'
 import { shallow } from 'enzyme'
 import ChatScreen from '../src/screens/ChatScreen/ChatScreen'
 import { firebase } from '../src/firebase/firebase.app'
-import FirestoreMock from '../__tests__/test-utils/firestoreMock.mock'
+import FirestoreMock from '../__tests-util__/firestoreMock.mock'
 
 const user = {
   _id: '93nJbIsNNRMezRIXoIgKUg9PKh42',
@@ -36,11 +36,11 @@ describe('<ChatScreen />', () => {
 
   it('does something', (done) => {
     firestoreMock.mockAddReturn = { id: 'test-id' }
-    firebase.firestore.collection('foobar')
-      .add({foo: 'bar'})
+    firebase.firestore.collection('chats')
+      .add({message: 'Hello World'})
       .then(res => {
-        expect(firestoreMock.mockCollection).toBeCalledWith('foobar')
-        expect(firestoreMock.mockAdd).toBeCalledWith({foo: 'bar'})
+        expect(firestoreMock.mockCollection).toBeCalledWith('chats')
+        expect(firestoreMock.mockAdd).toBeCalledWith({message: 'Hello World'})
         expect(res.id).toEqual('test-id')
         done()
       })
