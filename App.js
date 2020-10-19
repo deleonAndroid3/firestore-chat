@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler'
 import React, { useEffect, useCallback } from 'react'
-import { LogBox } from 'react-native'
+import { LogBox, TouchableOpacity } from 'react-native'
 import { firebase, firestore } from './src/firebase/firebase.app'
 import { NavigationContainer } from '@react-navigation/native'
 import {
@@ -80,16 +80,12 @@ export default function App() {
   const renderHeaderButton = (navigation) => {
     const btn = () => {
       return (
-        <GiftedAvatar
-          user={user}
-          onPress={() => {
-            navigation.navigate('Settings', {
-              setChatTheme,
-              chatTheme
-            })
-          }}
-          avatarStyle={{ marginRight: 8 }}
-        />
+        <TouchableOpacity onPress={() => navigation.navigate('Settings', {setChatTheme, chatTheme})} accessibilityLabel='Settings' testID='Settings'>
+          <GiftedAvatar
+            user={user}
+            avatarStyle={{ marginRight: 8 }}
+          />
+        </TouchableOpacity>
       )
     }
 

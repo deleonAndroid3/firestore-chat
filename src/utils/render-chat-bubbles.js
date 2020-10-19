@@ -18,7 +18,7 @@ export default function renderChatBubbles(theme) {
   return renderBubble
 }
 
-const SASSY = (props) => {
+export const SASSY = (props) => {
   return (
     <Bubble
       {...props}
@@ -45,7 +45,7 @@ const SASSY = (props) => {
   )
 }
 
-const DARK = (props) => {
+export const DARK = (props) => {
   return (
     <Bubble
       {...props}
@@ -69,7 +69,7 @@ const DARK = (props) => {
   )
 }
 
-const DEFAULT = (props) => {
+export const DEFAULT = (props) => {
   return (
     <Bubble
       {...props}

@@ -11,6 +11,7 @@ const SettingsScreen = (props) => {
   user.avatar = user.photo || user.avatar
 
   const { chatTheme, setChatTheme } = props.route.params
+  console.log(props.route.params)
   const [currentTheme, setCurrentTheme] = useState(chatTheme || themes[0])
 
   const onPressSwitch = useCallback(
@@ -56,7 +57,7 @@ const SettingsScreen = (props) => {
       >
         {user.name}
       </Text>
-      <Button onPress={onPressSwitch} title={currentTheme} color='#841584' />
+      <Button onPress={onPressSwitch} title={currentTheme} color='#841584' accessibilityLabel='Change Theme' testID='Change Theme' />
     </View>
   )
 }

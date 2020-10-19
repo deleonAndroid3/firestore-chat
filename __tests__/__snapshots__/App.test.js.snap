@@ -110,7 +110,6 @@ exports[`<App /> App test against snapshot 1`] = `
             >
               <Text
                 accessibilityRole="header"
-                aria-level="1"
                 numberOfLines={1}
                 onLayout={[Function]}
                 style={
@@ -123,6 +122,79 @@ exports[`<App /> App test against snapshot 1`] = `
               >
                 Home
               </Text>
+            </View>
+            <View
+              pointerEvents="box-none"
+              style={
+                Object {
+                  "alignItems": "flex-end",
+                  "bottom": 0,
+                  "justifyContent": "center",
+                  "opacity": 1,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            >
+              <View
+                accessibilityLabel="Settings"
+                accessible={true}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "opacity": 1,
+                  }
+                }
+                testID="Settings"
+              >
+                <View
+                  accessible={true}
+                  focusable={false}
+                  onClick={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "#e67e22",
+                      "borderRadius": 20,
+                      "height": 40,
+                      "justifyContent": "center",
+                      "marginRight": 8,
+                      "opacity": 1,
+                      "width": 40,
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "backgroundColor": "transparent",
+                          "color": "#fff",
+                          "fontSize": 16,
+                          "fontWeight": "100",
+                        },
+                        Object {},
+                      ]
+                    }
+                  >
+                    TX
+                  </Text>
+                </View>
+              </View>
             </View>
           </View>
         </View>

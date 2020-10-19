@@ -14,14 +14,40 @@ jobs:
           - v1-dependencies-{{ checksum "package.json" }}
           - v1-dependencies-
 
-      - run: npm install
+      - restore_cache:
+          name: Restore yarn package cache
+          key: v1-cache-dependencies-{{ checksum "yarn.lock" }}-{{ checksum "package.json" }}-{{ arch }}
+
+      - run:
+          name: Install npm dependencies
+          command: npm install
+
+      - run:
+          name: Install yarn dependencies
+          command: yarn install
+
+      - run:
+          name: Install Expo CLI
+          command: yarn add expo-cli
 
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
-      - run: yarn test -u
+      - save_cache:
+          name: Save yarn package cache
+          paths:
+            - ~/.cache/yarn
+          key: v1-cache-dependencies-{{ checksum "yarn.lock" }}-{{ checksum "package.json" }}-{{ arch }}
+
+      - run: 
+          name: Run ESLint
+          command: yarn lint
+
+      - run: 
+          name: Run Jest Test
+          command: yarn test
 
 
   e2eTest:
@@ -31,27 +57,9 @@ jobs:
     steps:
       - checkout
 
-      - restore_cache:
-          name: Restore yarn package cache
-          key: v1-cache-dependencies-{{ checksum "yarn.lock" }}-{{ checksum "package.json" }}-{{ arch }}
-
-      - run:
-          name: Install dependencies
-          command: yarn install
-
-      - run:
-          name: Install Expo CLI
-          command: yarn add expo-cli 
-      
-      - save_cache:
-          name: Save yarn package cache
-          paths:
-            - ~/.cache/yarn
-          key: v1-cache-dependencies-{{ checksum "yarn.lock" }}-{{ checksum "package.json" }}-{{ arch }}
-
       - run:
           name: Login into Expo
-          command: npx expo login -u $EXPO_USERNAME -p $EXPO_PASSWORD
+          command: npx e  xpo login -u $EXPO_USERNAME -p $EXPO_PASSWORD
 
       - run:
           name : App upload and Set app id in environment variable.
@@ -84,4 +92,4 @@ workflows:
             - unitTest
           filters:
               branches:
-                only: jesting
+                only: Merger
