@@ -32,9 +32,9 @@ jobs:
             - node_modules
           key: v1-cache-dependencies-{{ checksum "yarn.lock" }}-{{ checksum "package.json" }}-{{ arch }}
 
-      - run:
-          name: Run SonarScanner
-          command: sonarcloud/scan
+      # - run:
+      #     name: Run SonarScanner
+      #     command: sonarcloud/scan
 
       - run: 
           name: Run ESLint
