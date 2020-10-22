@@ -1,9 +1,4 @@
-version: 2.1
-orbs:
-  sonarcloud: sonarsource/sonarcloud@1.0.2
-
 jobs:
-
   unitTest:
     docker:
       - image: circleci/node:latest
@@ -43,7 +38,6 @@ jobs:
           name: Run Jest Test
           command: yarn test
 
-          
   e2eTest:
     docker:
       - image: circleci/node:latest
@@ -76,10 +70,14 @@ jobs:
           name: Run e2e Test
           command: node e2e-test.js
 
+orbs:
+  sonarcloud: sonarsource/sonarcloud@1.0.2
+version: 2.1          
 workflows:
   node-tests:
     jobs:
-      - unitTest
+      - unitTest:
+          context: sonarcloud
       - e2eTest:
           requires:
             - unitTest
