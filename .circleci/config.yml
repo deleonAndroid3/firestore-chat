@@ -1,3 +1,7 @@
+version: 2.1          
+orbs:
+  sonarcloud: sonarsource/sonarcloud@1.0.2
+
 jobs:
   unitTest:
     docker:
@@ -7,7 +11,9 @@ jobs:
       - checkout
 
       - restore_cache:
-          key: v1-cache-dependencies-{{ checksum "yarn.lock" }}-{{ checksum "package.json" }}-{{ arch }}
+          keys: 
+            - v1-cache-dependencies-{{ checksum "yarn.lock" }}-{{ checksum "package.json" }}-{{ arch }}
+            - v1-cache-dependencies
 
       - run:
           name: Install npm dependencies
@@ -23,7 +29,7 @@ jobs:
 
       - save_cache:
           paths:
-            - ~/.cache/
+            - node_modules
           key: v1-cache-dependencies-{{ checksum "yarn.lock" }}-{{ checksum "package.json" }}-{{ arch }}
 
       - run:
@@ -70,10 +76,6 @@ jobs:
           name: Run e2e Test
           command: node e2e-test.js
 
-          
-orbs:
-  sonarcloud: sonarsource/sonarcloud@1.0.2
-version: 2.1          
 workflows:
   node-tests:
     jobs:
