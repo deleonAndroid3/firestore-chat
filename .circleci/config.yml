@@ -43,6 +43,7 @@ jobs:
           name: Run Jest Test
           command: yarn test
 
+          
   e2eTest:
     docker:
       - image: circleci/node:latest
