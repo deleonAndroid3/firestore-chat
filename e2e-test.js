@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 var wd = require('wd')
 var assert = require('assert')
 var asserters = wd.asserters

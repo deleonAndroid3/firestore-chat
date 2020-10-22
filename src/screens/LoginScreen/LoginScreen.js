@@ -6,6 +6,7 @@ import { firebase } from '../../firebase/firebase.app'
 import * as Facebook from 'expo-facebook'
 import env from '../../../environment'
 
+/**FOR Unit Testing */
 export function handleSignIn(email, password) {
   return firebase
     .auth()
@@ -46,6 +47,8 @@ export async function handleSignInWithCred(_type, _credential){
     return error
   }
 }
+/**End Of Unit Testing */
+
 
 export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState('')

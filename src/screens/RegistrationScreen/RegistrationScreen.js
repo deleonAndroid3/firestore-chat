@@ -4,7 +4,11 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import styles from './styles'
 import { firebase } from '../../firebase/firebase.app'
 
-export function register(email, password) {
+export function register(email, password, confirmPassword) {
+  if (password !== confirmPassword) {
+    return 'Passwords don\'t match'
+  }
+
   return firebase
     .auth()
     .createUserWithEmailAndPassword(email, password)

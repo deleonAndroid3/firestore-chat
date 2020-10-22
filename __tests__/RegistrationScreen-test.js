@@ -13,16 +13,11 @@ describe('<RegistrationScreen />', () => {
 
   const user = {
     _id: '93nJbIsNNRMezRIXoIgKUg9PKh42',
-    email: 'apappas1129@gmail.com',
+    email: 'deleon.johncarlo2016@gmail.com',
     name: 'Ts Xs',
   }
 
   firebase.auth = jest.fn().mockReturnValue({
-    currentUser: {
-      displayName: 'testDisplayName',
-      email: 'test@test.com',
-      emailVerified: true
-    },
     createUserWithEmailAndPassword: function(email, password) { 
       if (email === 'apappas1129@gmail.com') {
         return 'User already exists'
@@ -44,14 +39,19 @@ describe('<RegistrationScreen />', () => {
     })
   })
   
+  it('should return User already exists', () => {
+    let result = register('apappas1129@gmail.com', 'password','password')
+    expect(result).toEqual('User already exists')
+  })
+
   it('should return user', () => {
-    let result = register('deleon.johncarlo2016@gmail.com', 'password')
+    let result = register('deleon.johncarlo2016@gmail.com', 'password','password' )
     expect(result).toEqual(user)
   })
 
-  it('should return an error', () => {
-    let result = register('apappas1129@gmail.com', 'password')
-    expect(result).toEqual('User already exists')
+  it('should return password don\'t match', () => {
+    let result = register('deleon.johncarlo2016@gmail.com', 'password', 'passwords')
+    expect(result).toEqual('Passwords don\'t match')
   })
 })
 

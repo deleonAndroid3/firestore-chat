@@ -1,4 +1,6 @@
 version: 2.1
+orbs:
+  sonarcloud: sonarsource/sonarcloud@1.0.2
 
 jobs:
 
@@ -10,12 +12,6 @@ jobs:
       - checkout
 
       - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          - v1-dependencies-
-
-      - restore_cache:
-          name: Restore yarn package cache
           key: v1-cache-dependencies-{{ checksum "yarn.lock" }}-{{ checksum "package.json" }}-{{ arch }}
 
       - run:
@@ -32,14 +28,12 @@ jobs:
 
       - save_cache:
           paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
-
-      - save_cache:
-          name: Save yarn package cache
-          paths:
-            - ~/.cache/yarn
+            - ~/.cache/
           key: v1-cache-dependencies-{{ checksum "yarn.lock" }}-{{ checksum "package.json" }}-{{ arch }}
+
+      - run:
+          name: Run SonarScanner
+          command: sonarcloud/scan
 
       - run: 
           name: Run ESLint
@@ -48,7 +42,6 @@ jobs:
       - run: 
           name: Run Jest Test
           command: yarn test
-
 
   e2eTest:
     docker:
@@ -81,7 +74,6 @@ jobs:
       - run:
           name: Run e2e Test
           command: node e2e-test.js
-
 
 workflows:
   node-tests:
