@@ -1,36 +1,53 @@
-version: 2.1
+version: 2.1          
 orbs:
-  node: circleci/node@4.0.0
+  sonarcloud: sonarsource/sonarcloud@1.0.2
 
 jobs:
-  e2eTest:
+  unitTest:
     docker:
-      - image: circleci/node:14.8.0
+      - image: circleci/node:latest
 
     steps:
       - checkout
 
       - restore_cache:
-          name: Restore yarn package cache
-          key: v1-cache-dependencies-{{ checksum "yarn.lock" }}-{{ checksum "package.json" }}-{{ arch }}
+          keys: 
+            - v2-cache-dependencies-{{ checksum "yarn.lock" }}-{{ checksum "package.json" }}-{{ arch }}
+            - v2-cache-dependencies
 
       - run:
-          name: Install dependencies
-          command: yarn install --frozen-lockfile
+          name: Install yarn dependencies
+          command: yarn install
 
       - run:
           name: Install Expo CLI
-          command: npm install expo-cli 
-      
+          command: yarn add expo-cli
+
       - save_cache:
-          name: Save yarn package cache
           paths:
-            - ~/.cache/yarn
-          key: v1-cache-dependencies-{{ checksum "yarn.lock" }}-{{ checksum "package.json" }}-{{ arch }}
+            - node_modules
+          key: v2-cache-dependencies-{{ checksum "yarn.lock" }}-{{ checksum "package.json" }}-{{ arch }}
+
+      - sonarcloud/scan
+
+      - run: 
+          name: Run ESLint
+          command: yarn lint --fix
+
+      - run: 
+          name: Run Jest Test
+          command: yarn test -u
+
+  e2eTest:
+    docker:
+      - image: circleci/node:latest
+
+    steps:
+      - checkout
 
       - run:
           name: Login into Expo
-          command: npx expo login -u $EXPO_USERNAME -p $EXPO_PASSWORD
+          command: npx e  xpo login -u $EXPO_USERNAME -p $EXPO_PASSWORD
 
       - run:
           name : App upload and Set app id in environment variable.
@@ -51,14 +68,16 @@ jobs:
 
       - run:
           name: Run e2e Test
-          command: cd test && node singletest.js
-
+          command: node e2e-test.js
 
 workflows:
   node-tests:
     jobs:
-      - node/test
+      - unitTest:
+          context: sonarcloud
       - e2eTest:
+          requires:
+            - unitTest
           filters:
               branches:
-                only: master
+                only: Merger

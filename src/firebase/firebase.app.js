@@ -1,21 +1,25 @@
-import * as firebase from 'firebase'
+/* eslint-disable no-undef */
+import firebase from 'firebase'
 import '@firebase/auth'
 import '@firebase/firestore'
-
-const firebaseConfig = {
-  apiKey: 'AIzaSyCI8XZTr0uYVfsOekGf9HyibI8oTAD_HTk',
-  authDomain: 'reactnativefirebase-78631.firebaseapp.com',
-  databaseURL: 'https://reactnativefirebase-78631.firebaseio.com',
-  projectId: 'reactnativefirebase-78631',
-  storageBucket: 'reactnativefirebase-78631.appspot.com',
-  messagingSenderId: '243790233194',
-  appId: '1:243790233194:web:44e3e983f7bdb587c39413',
-}
+import '@firebase/storage'
+import env from '../../environment'
 
 if (!firebase.apps.length) {
-  firebase.initializeApp(firebaseConfig)
+  firebase.initializeApp(env.firebaseConfig)
 }
 
 const firestore = firebase.firestore()
+const cloudStorage = firebase.storage()
 
-export { firebase, firestore }
+/**
+ * Creates a new firestore timestamp from the given date.
+ * @param {Date} date
+ * @returns {Timestamp} A new Timestamp representing the same point in time as the given date.
+ * @typedef {import ("firebase").firestore.Timestamp} Timestamp
+ */
+const getTimestamp = (date) => {
+  return firebase.firestore.Timestamp.fromDate(date || new Date())
+}
+
+export { firebase, firestore, cloudStorage, getTimestamp }

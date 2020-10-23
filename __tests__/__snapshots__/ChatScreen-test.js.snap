@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ChatScreen /> App test against snapshot 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <GiftedChat
+    actionSheet={null}
+    audioProps={Object {}}
+    bottomOffset={0}
+    dateFormat="ll"
+    disableComposer={false}
+    extraData={null}
+    forceGetKeyboardHeight={false}
+    imageProps={Object {}}
+    inverted={true}
+    isCustomViewBottom={false}
+    isKeyboardInternallyHandled={true}
+    isLoadingEarlier={false}
+    keyboardShouldPersistTaps="never"
+    lightboxProps={Object {}}
+    listViewProps={Object {}}
+    loadEarlier={false}
+    locale={null}
+    maxComposerHeight={200}
+    maxInputLength={null}
+    messageIdGenerator={[Function]}
+    messages={Array []}
+    minComposerHeight={33}
+    minInputToolbarHeight={44}
+    onInputTextChanged={null}
+    onLoadEarlier={[Function]}
+    onLongPress={null}
+    onLongPressAvatar={null}
+    onPressActionButton={null}
+    onPressAvatar={null}
+    onSend={[Function]}
+    placeholder="Type a message..."
+    renderAccessory={null}
+    renderActions={[Function]}
+    renderAvatarOnTop={false}
+    renderBubble={[Function]}
+    renderChatEmpty={null}
+    renderChatFooter={null}
+    renderComposer={null}
+    renderCustomView={null}
+    renderDay={null}
+    renderFooter={null}
+    renderInputToolbar={null}
+    renderLoadEarlier={null}
+    renderLoading={null}
+    renderMessage={null}
+    renderMessageImage={null}
+    renderMessageText={null}
+    renderSend={null}
+    renderSystemMessage={null}
+    renderTime={null}
+    renderUsernameOnMessage={true}
+    showUserAvatar={false}
+    textInputProps={Object {}}
+    timeFormat="LT"
+    user={
+      Object {
+        "_id": "93nJbIsNNRMezRIXoIgKUg9PKh42",
+        "email": "apappas1129@gmail.com",
+        "name": "Ts Xs",
+      }
+    }
+    videoProps={Object {}}
+    wrapInSafeArea={true}
+  />
+</View>
+`;
