@@ -32,21 +32,11 @@ jobs:
 
       - run: 
           name: Run ESLint
-          command: yarn lint
-
-      - run: 
-          name: Run ESLint on fail status
           command: yarn lint --fix
-          when: on_fail
-
-      - run: 
-          name: Run Jest Test
-          command: yarn test
 
       - run: 
           name: Run Jest Test
           command: yarn test -u
-          when: on_fail
 
   e2eTest:
     docker:
