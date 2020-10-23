@@ -80,4 +80,4 @@ workflows:
             - unitTest
           filters:
               branches:
-                only: Merger
+                only: master
