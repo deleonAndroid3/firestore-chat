@@ -41,7 +41,7 @@ jobs:
     steps:
       - checkout
 
-       - restore_cache:
+      - restore_cache:
           keys: 
             - v2-cache-dependencies-{{ checksum "yarn.lock" }}-{{ checksum "package.json" }}-{{ arch }}
             - v2-cache-dependencies
