@@ -19,10 +19,6 @@ jobs:
           name: Install yarn dependencies
           command: yarn install
 
-      - run:
-          name: Install Expo CLI
-          command: yarn add expo-cli
-
       - save_cache:
           paths:
             - node_modules
@@ -44,6 +40,20 @@ jobs:
 
     steps:
       - checkout
+
+       - restore_cache:
+          keys: 
+            - v2-cache-dependencies-{{ checksum "yarn.lock" }}-{{ checksum "package.json" }}-{{ arch }}
+            - v2-cache-dependencies
+
+      - run:
+          name: Install Expo CLI
+          command: yarn add expo-cli
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: v2-cache-dependencies-{{ checksum "yarn.lock" }}-{{ checksum "package.json" }}-{{ arch }}
 
       - run:
           name: Login into Expo
