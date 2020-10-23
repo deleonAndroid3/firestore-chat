@@ -12,8 +12,8 @@ jobs:
 
       - restore_cache:
           keys: 
-            - v1-cache-dependencies-{{ checksum "yarn.lock" }}-{{ checksum "package.json" }}-{{ arch }}
-            - v1-cache-dependencies
+            - v2-cache-dependencies-{{ checksum "yarn.lock" }}-{{ checksum "package.json" }}-{{ arch }}
+            - v2-cache-dependencies
 
       - run:
           name: Install npm dependencies
@@ -30,7 +30,7 @@ jobs:
       - save_cache:
           paths:
             - node_modules
-          key: v1-cache-dependencies-{{ checksum "yarn.lock" }}-{{ checksum "package.json" }}-{{ arch }}
+          key: v2-cache-dependencies-{{ checksum "yarn.lock" }}-{{ checksum "package.json" }}-{{ arch }}
 
       - sonarcloud/scan
 
