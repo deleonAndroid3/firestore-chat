@@ -47,7 +47,7 @@ jobs:
 
       - run:
           name: Login into Expo
-          command: npx e  xpo login -u $EXPO_USERNAME -p $EXPO_PASSWORD
+          command: npx expo login -u $EXPO_USERNAME -p $EXPO_PASSWORD
 
       - run:
           name : App upload and Set app id in environment variable.
