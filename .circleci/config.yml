@@ -15,9 +15,9 @@ jobs:
             - v2-cache-dependencies-{{ checksum "yarn.lock" }}-{{ checksum "package.json" }}-{{ arch }}
             - v2-cache-dependencies
 
-      - run:
-          name: Install npm dependencies
-          command: npm install
+      # - run:
+      #     name: Install npm dependencies
+      #     command: npm install
 
       - run:
           name: Install yarn dependencies
