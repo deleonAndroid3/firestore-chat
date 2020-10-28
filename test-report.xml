@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testExecutions version="1">
+  <file path="C:\Users\Carlo\Documents\1.Projects\React Native\firestore-chat\__tests__\RegistrationScreen-test.js">
+    <testCase name="&lt;RegistrationScreen /&gt; App renders without crashing" duration="6"/>
+    <testCase name="&lt;RegistrationScreen /&gt; App test against snapshot" duration="6"/>
+    <testCase name="&lt;RegistrationScreen /&gt; should return User already exists" duration="1"/>
+    <testCase name="&lt;RegistrationScreen /&gt; should return user" duration="0"/>
+    <testCase name="&lt;RegistrationScreen /&gt; should return password don&apos;t match" duration="0"/>
+  </file>
+  <file path="C:\Users\Carlo\Documents\1.Projects\React Native\firestore-chat\__tests__\LoginScreen-test.js">
+    <testCase name="&lt; LoginScreen /&gt; App renders without crashing" duration="6"/>
+    <testCase name="&lt; LoginScreen /&gt; App test against snapshot" duration="6"/>
+    <testCase name="&lt; LoginScreen /&gt; App should render components" duration="6"/>
+    <testCase name="&lt; LoginScreen /&gt; signin should return user" duration="0"/>
+    <testCase name="&lt; LoginScreen /&gt; signin should return error" duration="1"/>
+    <testCase name="&lt; LoginScreen /&gt; signout should return true" duration="0"/>
+    <testCase name="&lt; LoginScreen /&gt; signin with cred should return true" duration="1"/>
+    <testCase name="&lt; LoginScreen /&gt; signin with cred should return false by cancelling" duration="0"/>
+    <testCase name="&lt; LoginScreen /&gt; signin with cred should return false by error" duration="0"/>
+  </file>
+  <file path="C:\Users\Carlo\Documents\1.Projects\React Native\firestore-chat\__tests__\ChatScreen-test.js">
+    <testCase name="&lt;ChatScreen /&gt; App renders without crashing" duration="75"/>
+    <testCase name="&lt;ChatScreen /&gt; App test against snapshot" duration="6"/>
+    <testCase name="&lt;ChatScreen /&gt; should mock Firestore adding message" duration="2"/>
+    <testCase name="&lt;ChatScreen /&gt; should return the DEFAULT Theme" duration="0"/>
+    <testCase name="&lt;ChatScreen /&gt; should return the SASSY Theme" duration="1"/>
+    <testCase name="&lt;ChatScreen /&gt; should return the DARK Theme" duration="0"/>
+  </file>
+  <file path="C:\Users\Carlo\Documents\1.Projects\React Native\firestore-chat\__tests__\App-test.js">
+    <testCase name="&lt;App /&gt; App renders without crashing" duration="93"/>
+    <testCase name="&lt;App /&gt; App test against snapshot" duration="7"/>
+  </file>
+</testExecutions>

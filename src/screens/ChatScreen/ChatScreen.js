@@ -122,7 +122,7 @@ const ChatScreen = (props) => {
   async function pickFromGallery() {
     if (Platform.OS !== 'web') {
       const { status } = await ImagePicker.requestCameraRollPermissionsAsync()
-      if (status !== 'granted') {
+      if (status != 'granted') {
         alert('Sorry, we need camera roll permissions to make this work!')
         return
       }
@@ -164,7 +164,7 @@ const ChatScreen = (props) => {
   async function useCamera() {
     if (Platform.OS !== 'web') {
       const { status } = await ImagePicker.requestCameraPermissionsAsync()
-      if (status !== 'granted') {
+      if (status != 'granted') {
         alert('Sorry, we need camera permissions to make this work!')
         return
       }

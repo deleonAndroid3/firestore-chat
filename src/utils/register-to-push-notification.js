@@ -10,11 +10,11 @@ export default async function registerToPushNotification() {
       Permissions.NOTIFICATIONS
     )
     let finalStatus = existingStatus
-    if (existingStatus !== 'granted') {
+    if (existingStatus != 'granted') {
       const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS)
       finalStatus = status
     }
-    if (finalStatus !== 'granted') {
+    if (finalStatus != 'granted') {
       return Promise.reject(
         'Failed to get expo push token for push notification!'
       )

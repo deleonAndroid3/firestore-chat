@@ -6,9 +6,9 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "lint": "eslint ./src --ext .js",
+    "lint": "eslint ./src --ext .js  --fix",
     "tests": "jest --detectOpenHandles --forceExit --verbose --silent",
-    "test": "jest",
+    "test": "jest --coverage -u",
     "test:update-snapshot": "jest -u",
     "test:dev": "jest --watch --coverage=false --changedSince=origin/master",
     "test:coverage": "jest --verbose --updateSnapshot --watch --coverage && open ./coverage/lcov-report/index.html"
@@ -46,12 +46,15 @@
     "eslint": "^7.9.0",
     "eslint-plugin-react": "^7.20.6",
     "jest-expo": "^39.0.0",
+    "jest-sonar-reporter": "^2.0.0",
     "react-test-renderer": "^16.13.1"
   },
   "private": true,
   "jest": {
     "preset": "jest-expo",
     "testEnvironment": "jsdom",
+    "collectCoverage": true,
+    "testResultsProcessor": "jest-sonar-reporter",
     "setupFiles": [
       "./jest.setup.js"
     ],
@@ -60,9 +63,6 @@
     ],
     "snapshotSerializers": [
       "enzyme-to-json/serializer"
-    ],
-    "coverageReporters": [
-      "text"
     ]
   }
 }
