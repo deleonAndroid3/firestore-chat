@@ -59,31 +59,13 @@ driver
     return Input.sendKeys('BrowserStack')
   })
   .then(function () {
-    return driver.waitForElementByAccessibilityId(
-      'Settings',
+    return driver.waitForElementByAccessibilityId('send',
       asserters.isDisplayed && asserters.isEnabled,
-      30000,)
+      30000,
+    )
   })
-  .then(function (SettingsButton) {
-    return SettingsButton.click()
-  })
-  .then(function () {
-    return driver.waitForElementByAccessibilityId(
-      'Change Theme',
-      asserters.isDisplayed && asserters.isEnabled,
-      30000,)
-  })
-  .then(function (ThemeButton) {
-    return ThemeButton.click()
-  })
-  .then(function () {
-    return driver.waitForElementByAccessibilityId(
-      'Home, back',
-      asserters.isDisplayed && asserters.isEnabled,
-      30000,)
-  })
-  .then(function (BackButton) {
-    return BackButton.click()
+  .then(function (login) {
+    return login.click()
   })
   .fin(function () {
     return driver.quit()

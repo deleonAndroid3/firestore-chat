@@ -37,7 +37,6 @@ const Stack = createStackNavigator()
 export default function App() {
   const [loading, setLoading] = React.useState(true)
   const [user, setUser] = React.useState(null)
-  const [chatTheme, setChatTheme] = React.useState(null)
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user) => {
@@ -61,35 +60,8 @@ export default function App() {
     })
   }, [])
 
-  useEffect(() => {
-    updateChatTheme()
-  }, [chatTheme])
-
-  const updateChatTheme = useCallback(async ()=> {
-    if (chatTheme) {
-      AsyncStorage.setItem('chatTheme', chatTheme)
-    } else {
-      setChatTheme(await AsyncStorage.getItem('chatTheme'))
-    }
-  }, [chatTheme])
-
   if (loading) {
     return <></>
-  }
-
-  const renderHeaderButton = (navigation) => {
-    const btn = () => {
-      return (
-        <TouchableOpacity onPress={() => navigation.navigate('Settings', {setChatTheme, chatTheme})} accessibilityLabel='Settings' testID='Settings'>
-          <GiftedAvatar
-            user={user}
-            avatarStyle={{ marginRight: 8 }}
-          />
-        </TouchableOpacity>
-      )
-    }
-
-    return btn
   }
 
   return (
@@ -97,14 +69,9 @@ export default function App() {
       <Stack.Navigator>
         {user ? (
           <>
-            <Stack.Screen
-              name='Home'
-              options={({ navigation }) => {
-                return { headerRight: renderHeaderButton(navigation) }
-              }}
-            >
+            <Stack.Screen name='Home'>
               {(props) => (
-                <ChatScreen {...props} userData={user} theme={chatTheme} />
+                <ChatScreen {...props} userData={user}/>
               )}
             </Stack.Screen>
             <Stack.Screen

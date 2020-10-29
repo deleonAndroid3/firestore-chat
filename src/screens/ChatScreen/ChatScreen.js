@@ -16,7 +16,6 @@ import {
   sendPushNotifications,
   pickFromLibrary,
   upload,
-  renderChatBubbles,
 } from '../../utils'
 
 import { v4 as uuidV4 } from 'uuid'
@@ -26,14 +25,11 @@ const expoPushTokensRef = firestore.collection('expoPushTokens')
 
 const ChatScreen = (props) => {
   const user = props.userData
-  const theme = props.theme
 
   const [messages, setMessages] = useState([])
   const [expoPushToken, setExpoPushToken] = useState()
   const [participantTokens, setParticipantTokens] = useState()
-  const [renderBubble, setRenderBubble] = useState({
-    fn: renderChatBubbles(theme),
-  })
+
 
   useEffect(() => {
     getExpoNotifToken()
@@ -69,18 +65,6 @@ const ChatScreen = (props) => {
 
     return () => unsubscribe()
   }, [])
-
-  useEffect(() => {
-    setRenderBubble({ fn: renderChatBubbles(theme) })
-
-    //HACK: since extraData is still bugous and currently only the first and last messages are re-rendered.
-    // We manually re-render the bubbles by doing the following.
-    const backup = [...messages]
-    setMessages([])
-    setTimeout(() => {
-      setMessages(backup)
-    }, 10)
-  }, [theme])
 
   const appendMessages = useCallback(
     (messages) => {
@@ -204,7 +188,6 @@ const ChatScreen = (props) => {
         onSend={handleSend}
         renderActions={renderActions}
         renderUsernameOnMessage={true}
-        renderBubble={renderBubble.fn}
         // extraData={renderBubble} // Bug https://github.com/FaridSafi/react-native-gifted-chat/issues/1826
       />
       {/* {Platform.OS === 'android' && <KeyboardAvoidingView behavior='padding' />} */}
@@ -221,7 +204,6 @@ ChatScreen.propTypes = {
     avatar: PropTypes.string,
     photo: PropTypes.string,
   }).isRequired,
-  theme: PropTypes.string,
 }
 
 export default ChatScreen
