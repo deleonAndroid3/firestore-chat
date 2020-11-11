@@ -11,18 +11,17 @@ jobs:
       - checkout
 
       - restore_cache:
-          keys: 
-            - v2-cache-dependencies-{{ checksum "yarn.lock" }}-{{ checksum "package.json" }}-{{ arch }}
-            - v2-cache-dependencies
+          key: v1-cache-dependencies-{{ checksum "yarn.lock" }}-{{ checksum "package.json" }}-{{ arch }}
+            
 
       - run:
           name: Install yarn dependencies
-          command: yarn install
+          command: yarn install --frozen-lockfile
 
       - save_cache:
           paths:
-            - node_modules
-          key: v2-cache-dependencies-{{ checksum "yarn.lock" }}-{{ checksum "package.json" }}-{{ arch }}
+            - ~/.cache/yarn
+          key: v1-cache-dependencies-{{ checksum "yarn.lock" }}-{{ checksum "package.json" }}-{{ arch }}
 
       - run: 
           name: Run ESLint
@@ -42,9 +41,7 @@ jobs:
       - checkout
 
       - restore_cache:
-          keys: 
-            - v2-cache-dependencies-{{ checksum "yarn.lock" }}-{{ checksum "package.json" }}-{{ arch }}
-            - v2-cache-dependencies
+          keys: v1-cache-dependencies-{{ checksum "yarn.lock" }}-{{ checksum "package.json" }}-{{ arch }}
 
       - run:
           name: Install Expo CLI
@@ -52,12 +49,16 @@ jobs:
 
       - save_cache:
           paths:
-            - node_modules
-          key: v2-cache-dependencies-{{ checksum "yarn.lock" }}-{{ checksum "package.json" }}-{{ arch }}
+            - ~/.cache/yarn
+          key: v1-cache-dependencies-{{ checksum "yarn.lock" }}-{{ checksum "package.json" }}-{{ arch }}
 
       - run:
           name: Login into Expo
           command: npx expo login -u $EXPO_USERNAME -p $EXPO_PASSWORD
+
+      - run:
+        name: Publish to Expo
+        command: npx expo publish --non-interactive --max-workers 1
 
       - run:
           name : App upload and Set app id in environment variable.
