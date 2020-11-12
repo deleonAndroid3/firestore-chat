@@ -41,7 +41,7 @@ jobs:
       - checkout
 
       - restore_cache:
-          keys: v1-cache-dependencies-{{ checksum "yarn.lock" }}-{{ checksum "package.json" }}-{{ arch }}
+          key: v1-cache-dependencies-{{ checksum "yarn.lock" }}-{{ checksum "package.json" }}-{{ arch }}
 
       - run:
           name: Install Expo CLI
