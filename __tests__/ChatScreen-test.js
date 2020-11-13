@@ -14,7 +14,7 @@ const user = {
   name: 'Ts Xs',
 }
 
-const chat = shallow(<ChatScreen userData={user} theme={themes[0]}/> )
+const chat = shallow(<ChatScreen userData={user}/> )
 
 
 describe('<ChatScreen />', () => {
