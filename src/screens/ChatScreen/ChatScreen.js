@@ -25,7 +25,6 @@ const expoPushTokensRef = firestore.collection('expoPushTokens')
 
 const ChatScreen = (props) => {
   const user = props.userData
-  const theme = props.theme
 
   const [messages, setMessages] = useState([])
   const [expoPushToken, setExpoPushToken] = useState()
