@@ -87,6 +87,7 @@ workflows:
       - unitTest:
           context: sonarcloud
       - e2eTest:
+          type: approval
           requires:
             - unitTest
          
