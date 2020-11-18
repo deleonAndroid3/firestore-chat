@@ -204,7 +204,6 @@ ChatScreen.propTypes = {
     avatar: PropTypes.string,
     photo: PropTypes.string,
   }).isRequired,
-  theme: PropTypes.string,
 }
 
 export default ChatScreen
