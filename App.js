@@ -71,7 +71,7 @@ export default function App() {
           <>
             <Stack.Screen name='Home'>
               {(props) => (
-                <ChatScreen {...props} userData={user}/>
+                <ChatScreen {...props} userData={user} />
               )}
             </Stack.Screen>
             <Stack.Screen

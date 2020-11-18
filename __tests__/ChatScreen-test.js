@@ -13,9 +13,8 @@ const user = {
   email: 'apappas1129@gmail.com',
   name: 'Ts Xs',
 }
-const themes = ['default-theme', 'sassy', 'darktheme']
 
-const chat = shallow(<ChatScreen userData={user} theme={themes[0]}/> )
+const chat = shallow(<ChatScreen userData={user}/> )
 
 
 describe('<ChatScreen />', () => {
