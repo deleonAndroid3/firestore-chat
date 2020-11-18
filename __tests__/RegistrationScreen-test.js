@@ -40,7 +40,7 @@ describe('<RegistrationScreen />', () => {
   })
   
   it('should return User already exists', () => {
-    let result = register('apappas1129@gmail.com', 'password','password1')
+    let result = register('apappas1129@gmail.com', 'password','password')
     expect(result).toEqual('User already exists')
   })
 
