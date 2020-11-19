@@ -6,7 +6,8 @@ import { shallow } from 'enzyme'
 import ChatScreen from '../src/screens/ChatScreen/ChatScreen'
 import { firebase } from '../src/firebase/firebase.app'
 import FirestoreMock from '../__tests-util__/firestoreMock.mock'
-
+import { renderChatBubbles } from '../src/utils'
+import { SASSY } from '../src/utils/render-chat-bubbles'
 
 const user = {
   _id: '93nJbIsNNRMezRIXoIgKUg9PKh42',
