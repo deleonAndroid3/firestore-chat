@@ -80,7 +80,7 @@ jobs:
           name: Run e2e Test
           command: node e2e-test.js
 
-          
+
 workflows:
   node-tests:
     jobs:
@@ -89,6 +89,4 @@ workflows:
       - e2eTest:
           requires:
             - unitTest
-          filters:
-              branches:
-                only: master
+          

@@ -51,6 +51,30 @@ driver
   .then(function (send) {
     return send.click()
   })
+  .then(function () {
+    return driver.waitForElementByAccessibilityId('Settings', asserters.isDisplayed && asserters.isEnabled, 30000)
+  })
+  .then(function (SettingsButton) {
+    return SettingsButton.click()
+  })
+  .then(function () {
+    return driver.waitForElementByAccessibilityId('Change Theme', asserters.isDisplayed && asserters.isEnabled, 30000)
+  })
+  .then(function (ThemeButton) {
+    return ThemeButton.click()
+  })
+  .then(function () {
+    return driver.waitForElementByXPath('//android.widget.Button[@content-desc="Change Theme"]/android.widget.TextView', asserters.isDisplayed && asserters.isEnabled, 30000)
+  })
+  .then(function (ButtonText) {
+    return ButtonText.text().then(function (value) {
+      if (value === 'SASSY') {
+        assert(true)
+      } else {
+        assert(false)
+      }
+    })
+  })
   .fin(function () {
     return driver.quit()
   })
