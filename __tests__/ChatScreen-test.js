@@ -13,6 +13,7 @@ const user = {
   email: 'apappas1129@gmail.com',
   name: 'Ts Xs',
 }
+const themes = ['default-theme', 'sassy', 'darktheme']
 
 const chat = shallow(<ChatScreen userData={user}/> )
 
@@ -47,6 +48,10 @@ describe('<ChatScreen />', () => {
         done()
       })
       .catch(done)
+  })
+
+  it('should return the SASSY Theme', () => {
+    expect(renderChatBubbles(themes[1])).toBe(SASSY) 
   })
 })
 
