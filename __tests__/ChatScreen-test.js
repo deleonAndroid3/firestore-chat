@@ -6,15 +6,13 @@ import { shallow } from 'enzyme'
 import ChatScreen from '../src/screens/ChatScreen/ChatScreen'
 import { firebase } from '../src/firebase/firebase.app'
 import FirestoreMock from '../__tests-util__/firestoreMock.mock'
-import { renderChatBubbles } from '../src/utils'
-import { SASSY } from '../src/utils/render-chat-bubbles'
+
 
 const user = {
   _id: '93nJbIsNNRMezRIXoIgKUg9PKh42',
   email: 'apappas1129@gmail.com',
   name: 'Ts Xs',
 }
-const themes = ['default-theme', 'sassy', 'darktheme']
 
 const chat = shallow(<ChatScreen userData={user}/> )
 
@@ -51,8 +49,5 @@ describe('<ChatScreen />', () => {
       .catch(done)
   })
 
-  it('should return the SASSY Theme', () => {
-    expect(renderChatBubbles(themes[1])).toBe(SASSY) 
-  })
 })
 
