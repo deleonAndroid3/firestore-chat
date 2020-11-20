@@ -88,6 +88,4 @@ workflows:
       - e2eTest:
           requires:
             - unitTest
-          filters:
-              branches:
-                only: master
+
