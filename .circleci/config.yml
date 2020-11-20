@@ -56,10 +56,6 @@ jobs:
           command: npx expo login -u $EXPO_USERNAME -p $EXPO_PASSWORD
 
       - run:
-          name: Publish to Expo
-          command: npx expo publish --non-interactive --max-workers 1
-
-      - run:
           name : App upload and Set app id in environment variable.
           command : |
             APK_PATH=$(npx expo url:apk)
