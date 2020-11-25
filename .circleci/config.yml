@@ -75,13 +75,20 @@ jobs:
       - run:
           name: Run e2e Test
           command: node e2e-test.js
-          
+
 workflows:
   node-tests:
     jobs:
       - unitTest:
           context: sonarcloud
+          filters:
+            branches:
+              ignore:
+                - master
       - e2eTest:
           requires:
             - unitTest
-
+          filters:
+            branches:
+              only:
+                - main
