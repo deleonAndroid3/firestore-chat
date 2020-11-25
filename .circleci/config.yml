@@ -81,7 +81,14 @@ workflows:
     jobs:
       - unitTest:
           context: sonarcloud
+          filters:
+            branches:
+              ignore:
+                - master
       - e2eTest:
           requires:
             - unitTest
-
+          filters:
+            branches:
+              only:
+                - main
