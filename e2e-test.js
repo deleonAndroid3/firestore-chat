@@ -13,7 +13,7 @@ var desiredCaps = {
   name: 'single_test',
   device: 'Google Pixel 3',
   os_version: '9.0',
-  app: app,
+  app: 'bs://c8835fea9175f1cb03023b250a3e6b113c13ce40',
   'browserstack.debug': true,
   autoGrantPermissions: true
 }
@@ -43,7 +43,19 @@ driver
     return driver.waitForElementByAccessibilityId('Type a message...', asserters.isDisplayed && asserters.isEnabled, 30000)
   })
   .then(function (Input) {
-    return Input.sendKeys('BrowserStack')
+    return Input.sendKeys('Demo')
+  })
+  .then(function () {
+    return driver.waitForElementByAccessibilityId('send', asserters.isDisplayed && asserters.isEnabled, 30000)
+  })
+  .then(function (send) {
+    return send.click()
+  })
+  .then(function () {
+    return driver.waitForElementByAccessibilityId('Type a message...', asserters.isDisplayed && asserters.isEnabled, 30000)
+  })
+  .then(function (Input) {
+    return Input.sendKeys('Hello World')
   })
   .then(function () {
     return driver.waitForElementByAccessibilityId('send', asserters.isDisplayed && asserters.isEnabled, 30000)
