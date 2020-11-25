@@ -48,5 +48,6 @@ describe('<ChatScreen />', () => {
       })
       .catch(done)
   })
+
 })
 
