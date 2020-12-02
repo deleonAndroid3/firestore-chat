@@ -13,7 +13,7 @@ var desiredCaps = {
   name: 'single_test',
   device: 'Google Pixel 3',
   os_version: '9.0',
-  app: 'bs://68f40a29276123bcbe8529a7210ab5a489ee49f9',
+  app: 'bs://22f9d051b81cd5c5eb3fe5878d20b3b22adef75e',
   'browserstack.debug': true,
   autoGrantPermissions: true
 }
@@ -185,6 +185,9 @@ driver
   })
   .then(function () {
     return driver.waitForElementByAccessibilityId('send', asserters.isDisplayed && asserters.isEnabled, 30000)
+  })
+  .then(function (send) {
+    return send.click()
   })
   .fin(function () {
     return driver.quit()
