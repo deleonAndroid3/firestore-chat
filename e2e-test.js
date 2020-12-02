@@ -43,7 +43,19 @@ driver
     return driver.waitForElementByAccessibilityId('Type a message...', asserters.isDisplayed && asserters.isEnabled, 30000)
   })
   .then(function (Input) {
-    return Input.sendKeys('BrowserStack')
+    return Input.sendKeys('Demo')
+  })
+  .then(function () {
+    return driver.waitForElementByAccessibilityId('send', asserters.isDisplayed && asserters.isEnabled, 30000)
+  })
+  .then(function (send) {
+    return send.click()
+  })
+  .then(function () {
+    return driver.waitForElementByAccessibilityId('Type a message...', asserters.isDisplayed && asserters.isEnabled, 30000)
+  })
+  .then(function (Input) {
+    return Input.sendKeys('Hello World')
   })
   .then(function () {
     return driver.waitForElementByAccessibilityId('send', asserters.isDisplayed && asserters.isEnabled, 30000)
