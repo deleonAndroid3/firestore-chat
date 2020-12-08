@@ -69,10 +69,6 @@ driver
   .then(function (SettingsButton) {
     return SettingsButton.click()
   })
-  
-  /**
-   * Click Button to change theme to SASSY
-   */
   .then(function () {
     return driver.waitForElementByAccessibilityId('Change Theme', asserters.isDisplayed && asserters.isEnabled, 30000)
   })
@@ -91,10 +87,6 @@ driver
       }
     })
   })
-  /**
-   *  End of SASSY
-   */
-
   .then(function () {
     return driver.waitForElementByAccessibilityId('Home, back', asserters.isDisplayed && asserters.isEnabled, 30000)
   })
@@ -107,10 +99,6 @@ driver
   .then(function (SettingsButton) {
     return SettingsButton.click()
   })
-
-  /** 
-   * Click Button to change theme to DARK
-   */
   .then(function () {
     return driver.waitForElementByAccessibilityId('Change Theme', asserters.isDisplayed && asserters.isEnabled, 30000)
   })
@@ -129,10 +117,6 @@ driver
       }
     })
   })
-  /**
-   *  End of DARK
-   */
-
   .then(function () {
     return driver.waitForElementByAccessibilityId('Home, back', asserters.isDisplayed && asserters.isEnabled, 30000)
   })
@@ -145,10 +129,6 @@ driver
   .then(function (SettingsButton) {
     return SettingsButton.click()
   })
-
-  /** 
-   * Click Button to change theme to DEFAULT
-   */
   .then(function () {
     return driver.waitForElementByAccessibilityId('Change Theme', asserters.isDisplayed && asserters.isEnabled, 30000)
   })
@@ -167,10 +147,6 @@ driver
       }
     })
   })
-  /**
-   *  End of DEFAULT
-   */
-
   .then(function () {
     return driver.waitForElementByAccessibilityId('Home, back', asserters.isDisplayed && asserters.isEnabled, 30000)
   })
