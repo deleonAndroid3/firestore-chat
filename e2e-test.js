@@ -13,7 +13,7 @@ var desiredCaps = {
   name: 'single_test',
   device: 'Google Pixel 3',
   os_version: '9.0',
-  app: 'bs://c03324722d36eccd02b0a5ce435bbe922d388d1f',
+  app: 'bs://22f9d051b81cd5c5eb3fe5878d20b3b22adef75e',
   'browserstack.debug': true,
   autoGrantPermissions: true
 }
