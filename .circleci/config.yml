@@ -86,9 +86,4 @@ workflows:
               ignore:
                 - master
       - e2eTest:
-          requires:
-            - unitTest
-          filters:
-            branches:
-              only:
-                - main
+
