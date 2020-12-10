@@ -85,5 +85,5 @@ workflows:
             branches:
               ignore:
                 - master
-      - e2eTest:
+      - e2eTest
 
