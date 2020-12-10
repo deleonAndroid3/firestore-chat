@@ -37,6 +37,7 @@ const Stack = createStackNavigator()
 export default function App() {
   const [loading, setLoading] = React.useState(true)
   const [user, setUser] = React.useState(null)
+  const [chatTheme, setChatTheme] = React.useState(null)
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user) => {
@@ -64,12 +65,28 @@ export default function App() {
     return <></>
   }
 
+  const renderHeaderButton = (navigation) => {
+    const btn = () => {
+      return (
+        <TouchableOpacity onPress={() => navigation.navigate('Settings', {setChatTheme, chatTheme})} accessibilityLabel='Settings' testID='Settings'>
+          <GiftedAvatar
+            user={user}
+            avatarStyle={{ marginRight: 8 }}
+          />
+        </TouchableOpacity>
+      )
+    }
+    return btn
+  }
+
   return (
     <NavigationContainer>
       <Stack.Navigator>
         {user ? (
           <>
-            <Stack.Screen name='Home'>
+            <Stack.Screen name='Home' options={({ navigation }) => {
+              return { headerRight: renderHeaderButton(navigation) }
+            }}>
               {(props) => (
                 <ChatScreen {...props} userData={user} />
               )}

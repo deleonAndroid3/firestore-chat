@@ -90,5 +90,5 @@ workflows:
             - unitTest
           filters:
             branches:
-              only:
-                - main
+              ignore:
+                - master
